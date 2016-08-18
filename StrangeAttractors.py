@@ -41,9 +41,9 @@ class Attractor:
          self.z_values = z_init
      
     # Euler's Method:
-    def EulerMethod(self, function_name):
+    def EulerMethod(self, attractor_name):
          for i in range(num_steps):
-             x_prime, y_prime, z_prime = function_name(self.x_values[i], self.y_values[i], self.z_values[i])
+             x_prime, y_prime, z_prime = self.attractor_name(self.x_values[i], self.y_values[i], self.z_values[i])
              self.x_values[i + 1] = self.x_values[i] + (x_prime * step)
              self.y_values[i + 1] = self.y_values[i] + (y_prime * step)
              self.z_values[i + 1] = self.z_values[i] + (z_prime * step)
@@ -72,6 +72,8 @@ class Attractor:
 class Rossler(Attractor):
     # Initializes class with three coefficients.
     def __init__(self, a, b, c):
+        super(Rossler, self).__init__()
+        
         self.a = a
         self.b = b
         self.c = c
