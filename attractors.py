@@ -13,7 +13,7 @@ import csv
 import numpy as np
 
 # Internal Libraries:
-from Render3D import *
+from render import *
 
 # Step size and number of steps:
 step = 0.01
@@ -41,7 +41,7 @@ class Attractor:
          self.z_values = z_init
      
     # Euler's Method:
-    def EulerMethod(self, attractor_name):
+    def euler_method(self, attractor_name):
          for i in range(num_steps):
              x_prime, y_prime, z_prime = self.attractor_name(self.x_values[i], self.y_values[i], self.z_values[i])
              self.x_values[i + 1] = self.x_values[i] + (x_prime * step)
@@ -49,7 +49,7 @@ class Attractor:
              self.z_values[i + 1] = self.z_values[i] + (z_prime * step)
                
     # Exports arrays to CSV:
-    def ExportCSV(self):
+    def export_csv(self):
          print "Please print a file name below. The extension (csv) is automatically added. \
          Leaving the prompt blank will create a file with the name exports.csv."
          file_name = raw_input("File name: ") + ".csv"
@@ -57,8 +57,6 @@ class Attractor:
          # Check if file name exists. If not, set it to default.
          if file_name[:-3] == '':
              file_name = 'exports.csv'
-         else:
-             continue
          # File writer:
          with open(file_name, 'wb') as f:
              writer = csv.writer(f)
@@ -66,8 +64,8 @@ class Attractor:
                  writer.writerow(row)
                 
     # Renders the Graph:
-    def Render3D(self):
-          Render(self.x_values, self.y_values, self.z_values)
+    def render_3d(self):
+          render(self.x_values, self.y_values, self.z_values)
 
 class Rossler(Attractor):
     # Initializes class with three coefficients.
@@ -79,7 +77,7 @@ class Rossler(Attractor):
         self.c = c
     
     # Rossler Attractor function:
-    def Rossler(self, x, y, z):
+    def rossler(self, x, y, z):
           x_prime = (-1*y) - z
           y_prime = x + self.a*y
           z_prime = self.b + z*(x-self.c)

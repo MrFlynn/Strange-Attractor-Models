@@ -11,7 +11,7 @@ Renders 3D graphs in space of strange attractors given arrays of x,y,z.
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def Render(x_cords, y_cords, z_cords):
+def render(x_cords, y_cords, z_cords):
     # Initialize the plot:
     fig = plt.figure()
     ax = fig.gca(projection='3d')
