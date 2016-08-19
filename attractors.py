@@ -13,7 +13,7 @@ import csv
 import numpy as np
 
 # Internal Libraries:
-from render import *
+#from render import *
 
 # Step size and number of steps:
 step = 0.01
@@ -33,7 +33,7 @@ Desc: This class provides general functions for chaotic attractors.
 - ExportCSV: Exports coordinates to csv file.
 - Render3D: Renders the graph of the attractor.
 """
-class Attractor:
+class Attractor(object):
     # Initializes class with three arrays of size 10001.
     def __init__(self):
          self.x_values = x_init
@@ -43,7 +43,7 @@ class Attractor:
     # Euler's Method:
     def euler_method(self, attractor_name):
          for i in range(num_steps):
-             x_prime, y_prime, z_prime = self.attractor_name(self.x_values[i], self.y_values[i], self.z_values[i])
+             x_prime, y_prime, z_prime = attractor_name(self.x_values[i], self.y_values[i], self.z_values[i])
              self.x_values[i + 1] = self.x_values[i] + (x_prime * step)
              self.y_values[i + 1] = self.y_values[i] + (y_prime * step)
              self.z_values[i + 1] = self.z_values[i] + (z_prime * step)
@@ -64,8 +64,8 @@ class Attractor:
                  writer.writerow(row)
                 
     # Renders the Graph:
-    def render_3d(self):
-          render(self.x_values, self.y_values, self.z_values)
+    #def render_3d(self):
+     #     render(self.x_values, self.y_values, self.z_values)
 
 class Rossler(Attractor):
     # Initializes class with three coefficients.
