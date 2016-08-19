@@ -15,10 +15,6 @@ import numpy as np
 # Internal Libraries:
 from render import *
 
-# Step size and number of steps:
-step = 0.01
-num_steps = 10000
-
 # Intialize Arrays:
 x_init = np.empty((num_steps + 1,))
 y_init = np.empty((num_steps + 1,))
@@ -39,6 +35,8 @@ class Attractor(object):
         self.x_values = x_init
         self.y_values = y_init
         self.z_values = z_init
+        
+        # User supplied values.
         self.step = step
         self.nsteps = nsteps
      
@@ -46,20 +44,20 @@ class Attractor(object):
     # Performs Euler's Method n times with a certain step size, number of
     # steps, and a given attractor function.
     def euler_method(self, attractor_name):
-        for i in range(num_steps):
+        for i in range(self.nsteps):
             x_prime, y_prime, z_prime = attractor_name(self.x_values[i], 
-														self.y_values[i], 
-														self.z_values[i])
-            self.x_values[i + 1] = self.x_values[i] + (x_prime * step)
-            self.y_values[i + 1] = self.y_values[i] + (y_prime * step)
-            self.z_values[i + 1] = self.z_values[i] + (z_prime * step)
+                                                         self.y_values[i], 
+                                                         self.z_values[i])
+            self.x_values[i + 1] = self.x_values[i] + (x_prime * self.step)
+            self.y_values[i + 1] = self.y_values[i] + (y_prime * self.step)
+            self.z_values[i + 1] = self.z_values[i] + (z_prime * self.step)
                
     # export_csv : string -> file
     # Exports CSV with computed values.
     def export_csv(self, fname):
          rows = zip(self.x_values, self.y_values, self.z_values)
          # Check if file name exists. If not, set it to default.
-         if fname[:-3] == '':
+         if not '':
              fname = 'exports.csv'
          # File writer:
          with open(fname, 'wb') as f:
@@ -79,9 +77,9 @@ Desc: Provides Rossler function.
 """
 class RosslerAttractor(Attractor):
     # Initializes class with three coefficients.
-    def __init__(self, a, b, c):
-        # Allows class methods to be accessed by superclass.
-        super(Rossler, self).__init__()
+    def __init__(self, a, b, c, *args, **kwargs):
+        # Allows class methods to be accessed by superclass and inherit init.
+        super(RosslerAttractor, self).__init__(*args, **kwargs)
         # Initial conditions.
         self.a = a
         self.b = b
