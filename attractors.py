@@ -13,7 +13,7 @@ import csv
 import numpy as np
 
 # Internal Libraries:
-#from render import *
+from render import *
 
 # Step size and number of steps:
 step = 0.01
@@ -64,8 +64,8 @@ class Attractor(object):
                  writer.writerow(row)
                 
     # Renders the Graph:
-    #def render_3d(self):
-     #     render(self.x_values, self.y_values, self.z_values)
+    def render_3d(self):
+          render(self.x_values, self.y_values, self.z_values)
 
 class Rossler(Attractor):
     # Initializes class with three coefficients.
