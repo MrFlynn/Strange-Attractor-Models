@@ -3,9 +3,6 @@
 """
 Nick Pleatsikas - Differential Equations
 Strange Attractors Project
-
-Description:
-
 """
 
 # External Libraries:
@@ -15,15 +12,8 @@ import numpy as np
 # Internal Libraries:
 from render import *
 
-# Intialize Arrays:
-x_init = np.empty((num_steps + 1,))
-y_init = np.empty((num_steps + 1,))
-z_init = np.empty((num_steps + 1,))
-     
-x_init[0], y_init[0], z_init[0] = (0., 0., 0.) # Set first position in arrays to 0.
-
 """
-Atractor Super Class:
+Attractor Super Class:
 Desc: This class provides general functions for strange attractors.
 - euler_method: Euler's Method to generate sets of points.
 - export_csv: Exports coordinates to csv file.
@@ -32,14 +22,15 @@ Desc: This class provides general functions for strange attractors.
 class Attractor(object):
     # Initializes class with three arrays of size 10001.
     def __init__(self, step, nsteps):
-        self.x_values = x_init
-        self.y_values = y_init
-        self.z_values = z_init
         
         # User supplied values.
         self.step = step
         self.nsteps = nsteps
-     
+        
+        self.x_values = np.zeros(nsteps + 1)
+        self.y_values = np.zeros(nsteps + 1)
+        self.z_values = np.zeros(nsteps + 1)
+        
     # euler_method : function -> list list list
     # Performs Euler's Method n times with a certain step size, number of
     # steps, and a given attractor function.
