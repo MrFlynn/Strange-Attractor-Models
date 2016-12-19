@@ -45,11 +45,8 @@ class Attractor(object):
                
     # export_csv : string -> file
     # Exports CSV with computed values.
-    def export_csv(self, fname):
+    def export_csv(self, fname = 'exports.csv'):
          rows = zip(self.x_values, self.y_values, self.z_values)
-         # Check if file name exists. If not, set it to default.
-         if fname is not '':
-             fname = 'exports.csv'
          # File writer:
          with open(fname, 'wb') as f:
              writer = csv.writer(f)
