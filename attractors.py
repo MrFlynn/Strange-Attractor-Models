@@ -22,7 +22,6 @@ Desc: This class provides general functions for strange attractors.
 class Attractor(object):
     # Initializes class with three arrays of size 10001.
     def __init__(self, step, nsteps):
-        
         # User supplied values.
         self.step = step
         self.nsteps = nsteps
@@ -61,7 +60,7 @@ class Attractor(object):
 """
 Rossler Attractor Class:
 Desc: Provides Rossler function.
-- rossler: rossler attractor function.
+- rossler: Rossler attractor function.
 """
 class RosslerAttractor(Attractor):
     # Initializes class with three coefficients.
@@ -74,7 +73,8 @@ class RosslerAttractor(Attractor):
         self.c = c
     
     # rossler : int int int -> int int int
-    # Rossler attractor function.
+    # Rossler attractor function. Takes x, y, & z coordinates and returns the 
+    # velocity based on that point according to the Rossler system.
     def rossler(self, x, y, z):
         x_prime = (-1*y) - z
         y_prime = x + self.a*y
