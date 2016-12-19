@@ -83,3 +83,26 @@ class RosslerAttractor(Attractor):
         y_prime = x + self.a*y
         z_prime = self.b + z*(x-self.c)
         return x_prime, y_prime, z_prime
+
+"""
+Lorenz Attractor Class:
+Desc: Provides Lorenz function.
+- Lorenz: Lorenz attractor function.
+"""
+class LorenzAttractor(Attractor):
+    def __init__(self, a, b, c, *args, **kwargs):
+        # Allows init to be inherited by parent class.
+        super(LorenzAttractor, self).__init__(*args, **kwargs)
+        # Initial arguments.
+        self.a = a
+        self.b = b
+        self.c = c
+
+    # lorenz : int int int -> int int int
+    # Lorenz attractor function. Takes x, y, & z coordinates and returns the 
+    # velocity based on that point according to the Lorenz system.
+    def lorenz(self, x, y, z):
+        x_prime = self.a * (y - x)
+        y_prime = x * (self.b - z) - y
+        z_prime = x * y - self.c - z
+        return x_prime, y_prime, z_prime
